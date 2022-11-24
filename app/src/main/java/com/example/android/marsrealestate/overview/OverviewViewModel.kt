@@ -44,6 +44,15 @@ class OverviewViewModel : ViewModel() {
      * Sets the value of the status LiveData to the Mars API status.
      */
     private fun getMarsRealEstateProperties() {
-        _response.value = "Set the Mars API Response here!"
+        MarsApi.retrofitService.getProperties().enqueue(
+            object: Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    _response.value = "Failure: " + t.message
+                }
+            })
     }
 }
