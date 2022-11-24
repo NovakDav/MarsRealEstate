@@ -46,8 +46,9 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         MarsApi.retrofitService.getProperties().enqueue(
             object: Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    TODO("Not yet implemented")
+                override fun onResponse(call: Call<String>,
+                                        response: Response<String>) {
+                    _response.value = response.body()
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
